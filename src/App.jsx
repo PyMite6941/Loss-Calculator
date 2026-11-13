@@ -1,10 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
 
 function App() {
+
 	const [x, setX] = useState(6.0);
 	const [y, setY] = useState(3.0);
 	const [weight, setWeight] = useState(3.0);
-	const [alpha, setAlpha] = useState(0);
+	const [alpha, setAlpha] = useState(0.005);
 	const [history, setHistory] = useState([]);
 	const graphRef = useRef(null);
 
@@ -21,7 +22,7 @@ function App() {
 	};
 
 	const calculateStuff = () => {
-		const targetY = y - weight * x;
+		const targetY = y;
 		const loss = calculateLoss(weight, targetY, x);
 		const derivative = calculateDerivative(weight, targetY, x);
 		const newWeight = weight - alpha * derivative;
@@ -164,13 +165,12 @@ function App() {
 						Input Feature: {x}
 						<br></br>Target Value: {y}
 						<br></br>Learning Rate: {alpha.toFixed(3)}
-						<br></br>
 					</p>
 					<p>
-						Prediction: ŷ = w · x
+						Prediction: Ň = w · x
 						<br></br>Target: targetY = y − w · x
-						<br></br>Loss: L = (targetY − ŷ)²
-						<br></br>Gradient: dL/dw = −2 · x · (targetY − ŷ)
+						<br></br>Loss: L = (targetY − Ň)²
+						<br></br>Gradient: dL/dw = −2 · x · (targetY − Ň)
 						<br></br>Update: w ← w − α · dL/dw
 					</p>
 					{history.length === 0 ? <p>No Data Yet Calculated</p> : null}
@@ -207,6 +207,15 @@ function App() {
 					eveyrthing works in regards to AI loss. I have learned the equations
 					that are used and also learned a lot about how to train AI and remove
 					loss.
+				</p>
+				<p>
+					Loss calculation setup:
+					<br></br>Ň = w · x (prediction)
+					<br></br>targetY = y − w · x (target)
+					<br></br>L = (targetY − Ň)² (loss, mean squared error)
+					<br></br>dL/dw = −2 · x · (targetY − Ň) (gradient of loss w.r.t. weight)
+					<br></br>w ← w − α · dL/dw (weight update via gradient descent)
+					<br></br>Each click runs one step: predict → compute loss → compute gradient → update weight → record history.
 				</p>
 			</section>
 		</>
