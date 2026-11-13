@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import './App.css';
 
 function App() {
 
@@ -166,13 +167,37 @@ function App() {
 						<br></br>Target Value: {y}
 						<br></br>Learning Rate: {alpha.toFixed(3)}
 					</p>
-					<p>
-						Prediction: Ň = w · x
-						<br></br>Target: targetY = y − w · x
-						<br></br>Loss: L = (targetY − Ň)²
-						<br></br>Gradient: dL/dw = −2 · x · (targetY − Ň)
-						<br></br>Update: w ← w − α · dL/dw
-					</p>
+					<div className='equation-row'>
+						<span className='equation-label'>Prediction:</span>
+						<span className='math-block'>
+							<span className='math-var'>ŷ</span> <span className='math-op'>=</span> <span className='math-var'>w</span> <span className='math-op'>·</span> <span className='math-var'>x</span>
+						</span>
+					</div>
+					<div className='equation-row'>
+						<span className='equation-label'>Target:</span>
+						<span className='math-block'>
+							target<span className='math-sub'>Y</span> <span className='math-op'>=</span> <span className='math-var'>y</span> <span className='math-op'>−</span> <span className='math-var'>w</span> <span className='math-op'>·</span> <span className='math-var'>x</span>
+						</span>
+					</div>
+					<div className='equation-row'>
+						<span className='equation-label'>Loss:</span>
+						<span className='math-block'>
+							<span className='math-var'>L</span> <span className='math-op'>=</span> (target<span className='math-sub'>Y</span> <span className='math-op'>−</span> <span className='math-var'>ŷ</span>)<span className='math-op'>²</span>
+						</span>
+					</div>
+					<div className='equation-row'>
+						<span className='equation-label'>Gradient:</span>
+						<span className='math-block'>
+							dL/dw <span className='math-op'>=</span> <span className='math-op'>−2</span> <span className='math-op'>·</span> <span className='math-var'>x</span> <span className='math-op'>·</span> (target<span className='math-sub'>Y</span> <span className='math-op'>−</span> <span className='math-var'>ŷ</span>)
+						</span>
+					</div>
+					<div className='equation-row'>
+						<span className='equation-label'>Update:</span>
+						<span className='math-block'>
+							<span className='math-var'>w</span> <span className='math-op'>←</span> <span className='math-var'>w</span> <span className='math-op'>−</span> <span className='math-var'>α</span> <span className='math-op'>·</span> dL/dw
+						</span>
+					</div>
+					<p className='math-note'>Each click runs one step: predict → compute loss → compute gradient → update weight → record history.</p>
 					{history.length === 0 ? <p>No Data Yet Calculated</p> : null}
 					{history.length > 0 && (
 						<table
@@ -208,15 +233,37 @@ function App() {
 					that are used and also learned a lot about how to train AI and remove
 					loss.
 				</p>
-				<p>
-					Loss calculation setup:
-					<br></br>Ň = w · x (prediction)
-					<br></br>targetY = y − w · x (target)
-					<br></br>L = (targetY − Ň)² (loss, mean squared error)
-					<br></br>dL/dw = −2 · x · (targetY − Ň) (gradient of loss w.r.t. weight)
-					<br></br>w ← w − α · dL/dw (weight update via gradient descent)
-					<br></br>Each click runs one step: predict → compute loss → compute gradient → update weight → record history.
-				</p>
+				<p>Loss calculation setup:</p>
+				<div className='equation-row'>
+					<span className='equation-label'>Prediction:</span>
+					<span className='math-block'>
+						<span className='math-var'>ŷ</span> <span className='math-op'>=</span> <span className='math-var'>w</span> <span className='math-op'>·</span> <span className='math-var'>x</span>
+					</span>
+				</div>
+				<div className='equation-row'>
+					<span className='equation-label'>Target:</span>
+					<span className='math-block'>
+						target<span className='math-sub'>Y</span> <span className='math-op'>=</span> <span className='math-var'>y</span> <span className='math-op'>−</span> <span className='math-var'>w</span> <span className='math-op'>·</span> <span className='math-var'>x</span>
+					</span>
+				</div>
+				<div className='equation-row'>
+					<span className='equation-label'>Loss:</span>
+					<span className='math-block'>
+						<span className='math-var'>L</span> <span className='math-op'>=</span> (target<span className='math-sub'>Y</span> <span className='math-op'>−</span> <span className='math-var'>ŷ</span>)<span className='math-op'>²</span>
+					</span>
+				</div>
+				<div className='equation-row'>
+					<span className='equation-label'>Gradient:</span>
+					<span className='math-block'>
+						dL/dw <span className='math-op'>=</span> <span className='math-op'>−2</span> <span className='math-op'>·</span> <span className='math-var'>x</span> <span className='math-op'>·</span> (target<span className='math-sub'>Y</span> <span className='math-op'>−</span> <span className='math-var'>ŷ</span>)
+					</span>
+				</div>
+				<div className='equation-row'>
+					<span className='equation-label'>Update:</span>
+					<span className='math-block'>
+						<span className='math-var'>w</span> <span className='math-op'>←</span> <span className='math-var'>w</span> <span className='math-op'>−</span> <span className='math-var'>α</span> <span className='math-op'>·</span> dL/dw
+					</span>
+				</div>
 			</section>
 		</>
 	);
